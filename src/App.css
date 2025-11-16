@@ -1,42 +1,472 @@
-#root {
-  max-width: 1280px;
+/* --- src/App.css --- */
+
+/* 1. Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* 2. CSS Variables (Root) */
+:root {
+  --font-primary: 'Poppins', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --color-gold: #b38a4a;
+  --color-dark: #1a1a1a;
+  --color-text: #333;
+  --color-text-light: #555;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f8f8;
+  --color-white: #fff;
+  --border-radius: 8px;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+}
+
+/* 3. Global Resets & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-gold);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+
+/* 4. Utility Classes */
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 4rem 0;
+  overflow: hidden; /* For animations */
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* Gold underline effect */
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-gold);
+}
+
+/* 5. Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  box-shadow: 0 2px 8px rgba(179, 138, 74, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #a17b43;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(179, 138, 74, 0.4);
+}
+
+.btn-secondary {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateY(-2px);
+  border-color: #ccc;
+}
+
+
+/* 6. Animations (Fade-in on load) */
+/* We will apply this class to elements to make them fade in.
+  For a true "on-scroll" animation, an IntersectionObserver is needed,
+  but this provides a clean, staggered initial load animation.
+*/
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 7. Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.header-logo img {
+  height: 40px;
+}
+
+.header-menu {
+  display: flex;
+  gap: 1.8rem;
+}
+
+.header-menu li a {
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 5px 0;
+}
+
+/* Nav link underline animation */
+.header-menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-gold);
+  transition: var(--transition);
+}
+
+.header-menu li a:hover::after {
+  width: 100%;
+}
+
+.header-menu li a:hover {
+  color: var(--color-gold);
+}
+
+/* 8. Hero */
+.hero {
+  height: 90vh;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 70px; /* Header height */
+}
+
+/* Overlay for text readability */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  color: var(--color-white);
+  font-size: 3.5rem;
+  animation-delay: 0.2s; /* Staggered animation */
+}
+
+.hero-content .subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  animation-delay: 0.4s;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  animation-delay: 0.6s;
+}
+
+/* 9. Custom Creation (Section 1) */
+.custom-creation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+.custom-creation-content h3 {
+  color: var(--color-gold);
+  font-weight: 600;
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+}
+
+.custom-creation-content p {
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+.custom-creation-offer {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(179, 138, 74, 0.2);
+}
+
+.custom-creation-offer h3 {
+  color: var(--color-white);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.custom-creation-offer .btn {
+  background-color: var(--color-white);
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.custom-creation-offer .btn:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* 10. Marketplace (Section 2) */
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.marketplace-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.marketplace-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.marketplace-card .icon {
+  font-size: 3rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.marketplace-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.marketplace-card p {
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+.marketplace-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* 11. Offers (Section 3) */
+.offers-section {
+  background: linear-gradient(to right, #333, #111);
+  color: var(--color-white);
+  padding: 5rem 0;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.offers-section h2 {
+  color: var(--color-white);
+  font-size: 2.8rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.offers-section p {
+  color: #eee;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.offers-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.card {
-  padding: 2em;
+.offer-item {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-gold);
 }
 
-.read-the-docs {
+/* 12. Why Us (Section 4) */
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.why-us-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.why-us-item .icon {
+  font-size: 1.5rem;
+  color: var(--color-gold);
+  margin-top: 4px;
+}
+
+.why-us-item h3 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.why-us-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* 13. Footer */
+.footer {
+  background-color: var(--color-dark);
+  color: #ccc;
+  padding: 4rem 0 2rem 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-col h4 {
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col p, .footer-col li {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-col .icon {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  font-size: 1.5rem;
+  color: #aaa;
+  transition: var(--transition);
+}
+
+.footer-social a:hover {
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
   color: #888;
 }
