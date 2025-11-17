@@ -8,11 +8,11 @@ interface NavigationProps {
 
 export function Navigation({ isLoaded }: NavigationProps) {
   const navLinks = [
-    'Home',
-    'Custom Design',
-    'Marketplace',
-    'About',
-    'Contact'
+    { label: 'Home', href: '#' },
+    { label: 'Custom Design', href: '#custom-design' },
+    { label: 'Marketplace', href: '#marketplace' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' }
   ];
 
   return (
@@ -24,7 +24,7 @@ export function Navigation({ isLoaded }: NavigationProps) {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center">
+        <a href="#" className="flex items-center">
           <img 
             src={logoImage} 
             alt="Galagama Gems" 
@@ -34,12 +34,12 @@ export function Navigation({ isLoaded }: NavigationProps) {
               filter: 'brightness(1.2) contrast(1.1)'
             }}
           />
-        </div>
+        </a>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <NavLink key={link} label={link} />
+            <NavLink key={link.label} label={link.label} href={link.href} />
           ))}
         </div>
 

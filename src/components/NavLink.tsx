@@ -3,16 +3,19 @@ import { motion } from 'motion/react';
 
 interface NavLinkProps {
   label: string;
+  href?: string;
 }
 
-export function NavLink({ label }: NavLinkProps) {
+export function NavLink({ label, href = '#' }: NavLinkProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
+    <a
+      href={href}
       className="relative cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{ textDecoration: 'none' }}
     >
       <span className="text-white transition-colors">
         {label}
@@ -25,6 +28,6 @@ export function NavLink({ label }: NavLinkProps) {
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-600 origin-center"
       />
-    </div>
+    </a>
   );
 }
