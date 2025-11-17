@@ -107,33 +107,71 @@ export function AboutUs() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <Sparkles className="text-white" size={32} />
-              </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-800">Who We Are</h3>
-            </div>
+            <motion.div 
+              className="flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <motion.div 
+                className="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Sparkles className="text-white" size={36} />
+              </motion.div>
+              <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                Who We Are
+              </h3>
+            </motion.div>
             
             <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Welcome to <span className="font-semibold text-purple-600">Galagama Gems</span>, where the timeless allure of nature's treasures meets the pinnacle of human craftsmanship. Nestled in the heart of the world's most ancient gem-rich lands, we are a collective of master artisans, dedicated to transforming raw, exquisite gemstones into unparalleled works of art.
-              </p>
+              <motion.p 
+                className="text-lg text-gray-700 leading-relaxed"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                Welcome to <span className="font-bold text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text">Galagama Gems</span>, where the timeless allure of nature's treasures meets the pinnacle of human craftsmanship. Nestled in the heart of the world's most ancient gem-rich lands, we are a collective of master artisans, dedicated to transforming raw, exquisite gemstones into unparalleled works of art.
+              </motion.p>
               
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Clock className="text-purple-600" size={24} />
-                  <strong className="text-lg text-gray-800">Founded:</strong>
+              <motion.div 
+                className="relative bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 p-8 rounded-3xl border-2 border-purple-200/50 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="absolute -top-3 -left-3 w-12 h-12 bg-purple-500 rounded-full opacity-20 blur-xl"></div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                    <Clock className="text-white" size={24} />
+                  </div>
+                  <strong className="text-xl text-gray-800">Founded</strong>
                 </div>
-                <p className="text-gray-700 ml-9">[Year] - Built on generations of gemstone expertise and traditional craftsmanship passed down through our master artisans.</p>
-              </div>
+                <p className="text-gray-700 text-lg ml-16">[Year] - Built on generations of gemstone expertise and traditional craftsmanship passed down through our master artisans.</p>
+              </motion.div>
               
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Users className="text-blue-600" size={24} />
-                  <strong className="text-lg text-gray-800">Our Team:</strong>
+              <motion.div 
+                className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-50 p-8 rounded-3xl border-2 border-blue-200/50 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="absolute -top-3 -right-3 w-12 h-12 bg-blue-500 rounded-full opacity-20 blur-xl"></div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                    <Users className="text-white" size={24} />
+                  </div>
+                  <strong className="text-xl text-gray-800">Our Team</strong>
                 </div>
-                <p className="text-gray-700 ml-9">A collective of experienced gemologists, skilled jewelers, and passionate designers who share a common love for creating extraordinary jewelry that tells your unique story.</p>
-              </div>
+                <p className="text-gray-700 text-lg ml-16">A collective of experienced gemologists, skilled jewelers, and passionate designers who share a common love for creating extraordinary jewelry that tells your unique story.</p>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -144,34 +182,71 @@ export function AboutUs() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
               {/* Main large image */}
-              <div className="col-span-2 h-80 rounded-3xl overflow-hidden shadow-2xl">
+              <motion.div 
+                className="col-span-2 h-96 rounded-3xl overflow-hidden shadow-2xl relative group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1611955167811-4711904bb9f8?w=800&q=80" 
                   alt="Gemstone crafting"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-              </div>
+              </motion.div>
               {/* Two smaller images */}
-              <div className="h-48 rounded-3xl overflow-hidden shadow-xl">
+              <motion.div 
+                className="h-56 rounded-3xl overflow-hidden shadow-xl relative group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-pink-900/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" 
                   alt="Jewelry detail"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-              </div>
-              <div className="h-48 rounded-3xl overflow-hidden shadow-xl">
+              </motion.div>
+              <motion.div 
+                className="h-56 rounded-3xl overflow-hidden shadow-xl relative group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80" 
                   alt="Gems collection"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-              </div>
+              </motion.div>
             </div>
-            {/* Decorative gradient overlay */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl opacity-30 -z-10"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-3xl opacity-30 -z-10"></div>
+            {/* Decorative gradient overlay - Enhanced */}
+            <motion.div 
+              className="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl opacity-20"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 90, 0]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            ></motion.div>
+            <motion.div 
+              className="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-3xl opacity-20"
+              animate={{ 
+                scale: [1, 1.3, 1],
+                rotate: [0, -90, 0]
+              }}
+              transition={{ 
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            ></motion.div>
           </motion.div>
         </div>
 
@@ -184,71 +259,141 @@ export function AboutUs() {
           className="mb-32"
         >
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">What We Do</h3>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+                What We Do
+              </h3>
+              <div className="w-32 h-2 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 mx-auto rounded-full shadow-lg"></div>
+              <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+                Crafting Excellence in Every Facet
+              </p>
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <motion.div
-              whileHover={{ y: -10, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -15, scale: 1.03 }}
+              viewport={{ once: true }}
+              className="group relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
             >
-              <div className="h-56 overflow-hidden">
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+              
+              <div className="h-64 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1506755855567-92ff770e8d00?w=600&q=80" 
                   alt="Ethical sourcing"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000"
                 />
-              </div>
-              <div className="p-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                  <Shield className="text-white" size={28} />
+                <div className="absolute bottom-4 left-4 z-20">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500">
+                    <Shield className="text-white" size={32} />
+                  </div>
                 </div>
-                <h4 className="text-2xl font-bold mb-4 text-gray-800">Ethically Sourced Gemstones</h4>
-                <p className="text-gray-600 leading-relaxed">We source only the finest gemstones from responsible suppliers, ensuring every piece reflects our commitment to ethical practices.</p>
+              </div>
+              <div className="p-8 relative z-20">
+                <h4 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-purple-600 transition-colors">
+                  Ethically Sourced Gemstones
+                </h4>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  We source only the finest gemstones from responsible suppliers, ensuring every piece reflects our commitment to ethical practices.
+                </p>
+                <motion.div 
+                  className="mt-6 flex items-center text-purple-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+                  initial={{ x: -20 }}
+                  whileHover={{ x: 0 }}
+                >
+                  Learn More →
+                </motion.div>
               </div>
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -10, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -15, scale: 1.03 }}
+              viewport={{ once: true }}
+              className="group relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
             >
-              <div className="h-56 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+              
+              <div className="h-64 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80" 
                   alt="Handcrafted jewelry"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000"
                 />
-              </div>
-              <div className="p-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                  <Sparkles className="text-white" size={28} />
+                <div className="absolute bottom-4 left-4 z-20">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500">
+                    <Sparkles className="text-white" size={32} />
+                  </div>
                 </div>
-                <h4 className="text-2xl font-bold mb-4 text-gray-800">Handcrafted Jewelry</h4>
-                <p className="text-gray-600 leading-relaxed">Each piece is meticulously crafted by master artisans, blending traditional techniques with contemporary design.</p>
+              </div>
+              <div className="p-8 relative z-20">
+                <h4 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-blue-600 transition-colors">
+                  Handcrafted Jewelry
+                </h4>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Each piece is meticulously crafted by master artisans, blending traditional techniques with contemporary design.
+                </p>
+                <motion.div 
+                  className="mt-6 flex items-center text-blue-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+                  initial={{ x: -20 }}
+                  whileHover={{ x: 0 }}
+                >
+                  Learn More →
+                </motion.div>
               </div>
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -10, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ y: -15, scale: 1.03 }}
+              viewport={{ once: true }}
+              className="group relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
             >
-              <div className="h-56 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+              
+              <div className="h-64 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" 
                   alt="Custom design"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000"
                 />
-              </div>
-              <div className="p-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                  <Gem className="text-white" size={28} />
+                <div className="absolute bottom-4 left-4 z-20">
+                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500">
+                    <Gem className="text-white" size={32} />
+                  </div>
                 </div>
-                <h4 className="text-2xl font-bold mb-4 text-gray-800">Custom Design Services</h4>
-                <p className="text-gray-600 leading-relaxed">We transform your vision into reality, creating bespoke jewelry that perfectly captures your unique story and style.</p>
+              </div>
+              <div className="p-8 relative z-20">
+                <h4 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-pink-600 transition-colors">
+                  Custom Design Services
+                </h4>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  We transform your vision into reality, creating bespoke jewelry that perfectly captures your unique story and style.
+                </p>
+                <motion.div 
+                  className="mt-6 flex items-center text-pink-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+                  initial={{ x: -20 }}
+                  whileHover={{ x: 0 }}
+                >
+                  Learn More →
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -256,13 +401,16 @@ export function AboutUs() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="mt-16 text-center"
           >
-            <p className="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 p-8 rounded-3xl border border-purple-200">
-              We solve the challenge of finding truly unique, ethically crafted jewelry that resonates with your personal story and values.
-            </p>
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 blur-2xl opacity-30"></div>
+              <p className="relative text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto bg-white/80 backdrop-blur-sm p-10 rounded-3xl border-2 border-purple-200 shadow-xl">
+                We solve the challenge of finding truly <span className="font-bold text-transparent bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text">unique, ethically crafted jewelry</span> that resonates with your personal story and values.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
