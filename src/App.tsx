@@ -125,49 +125,130 @@ function AppContent() {
         </div>
       </div>
 
-      {/* Demo Content Below to Show Parallax Effect */}
+      {/* Featured Products Section */}
       <div className="bg-white py-20 px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center mb-8">Our Collections</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+            style={{ 
+              fontSize: '2.5rem', 
+              fontWeight: '700',
+              background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+          >
+            Our Featured Products
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { id: 1, name: 'Golden Ring', category: 'ring', metal: '18K Gold', price: 350 },
-              { id: 2, name: 'Diamond Necklace', category: 'necklace', metal: 'White Gold', price: 1200 },
-              { id: 3, name: 'Ruby Earrings', category: 'earring', metal: 'Platinum', price: 1250 }
-            ].map((item) => (
-              <div key={item.id} className="bg-gray-100 p-8 rounded-lg">
-                <div className="aspect-square bg-gray-300 rounded-lg mb-4" />
-                <h3 className="mb-2">{item.name}</h3>
-                <p className="text-gray-600 mb-2">Discover our exquisite handcrafted pieces</p>
-                <p className="text-amber-600 font-bold text-xl mb-4">${item.price}</p>
-                <motion.button
+              { 
+                id: 1, 
+                name: 'Sapphire Elegance Ring', 
+                category: 'ring', 
+                metal: '18K Gold', 
+                price: 850,
+                description: 'Exquisite blue sapphire set in lustrous 18K gold, handcrafted to perfection',
+                image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80'
+              },
+              { 
+                id: 2, 
+                name: 'Ceylon Moonstone Necklace', 
+                category: 'necklace', 
+                metal: 'White Gold', 
+                price: 1450,
+                description: 'Authentic Ceylon moonstone with ethereal glow, beautifully set in white gold',
+                image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80'
+              },
+              { 
+                id: 3, 
+                name: 'Ruby Sunset Earrings', 
+                category: 'earring', 
+                metal: 'Platinum', 
+                price: 1350,
+                description: 'Stunning Burmese rubies paired with platinum for timeless elegance',
+                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80'
+              }
+            ].map((item, index) => (
+              <motion.div 
+                key={item.id} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gray-100 rounded-lg overflow-hidden"
+                style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+              >
+                <motion.div 
+                  className="aspect-square bg-gray-300 overflow-hidden"
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    addToCart({
-                      id: `collection-${item.id}-${Date.now()}`,
-                      category: item.category,
-                      metal: item.metal,
-                      metalPrice: item.price,
-                      size: 'M',
-                      estimatedPrice: item.price
-                    });
-                    alert('Item added to cart!');
-                  }}
-                  style={{
-                    width: '100%',
-                    padding: '12px 24px',
-                    background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
-                    color: 'black',
-                    fontWeight: '600',
-                    borderRadius: '8px',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}
+                  transition={{ duration: 0.3 }}
                 >
-                  Add to Cart
-                </motion.button>
-              </div>
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center' }}
+                  />
+                </motion.div>
+                <div className="p-8">
+                  <h3 className="mb-2" style={{ fontSize: '1.5rem', fontWeight: '600' }}>{item.name}</h3>
+                  <p className="text-gray-600 mb-3" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
+                    {item.description}
+                  </p>
+                  <p style={{ 
+                    fontSize: '0.875rem', 
+                    color: '#6b7280',
+                    marginBottom: '0.75rem',
+                    fontWeight: '500'
+                  }}>
+                    {item.metal}
+                  </p>
+                  <p className="mb-4" style={{ 
+                    background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    fontWeight: '700',
+                    fontSize: '1.5rem'
+                  }}>
+                    ${item.price}
+                  </p>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      addToCart({
+                        id: `collection-${item.id}-${Date.now()}`,
+                        category: item.category,
+                        metal: item.metal,
+                        metalPrice: item.price,
+                        size: 'M',
+                        estimatedPrice: item.price
+                      });
+                      alert('Item added to cart!');
+                    }}
+                    style={{
+                      width: '100%',
+                      padding: '12px 24px',
+                      background: 'linear-gradient(to right, rgb(251, 191, 36), rgb(202, 138, 4))',
+                      color: 'black',
+                      fontWeight: '600',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Add to Cart
+                  </motion.button>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
