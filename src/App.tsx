@@ -8,13 +8,14 @@ import { CustomDesign } from './components/CustomDesign';
 import { AboutUs } from './components/AboutUs';
 import { ContactUs } from './components/ContactUs';
 import { Cart } from './components/Cart';
+import { Packages } from './components/Packages';
 import { Footer } from './components/Footer';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsAndConditions } from './components/TermsAndConditions';
 import { CartProvider, useCart } from './context/CartContext';
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design' | 'about' | 'contact' | 'cart' | 'privacy' | 'terms'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'login' | 'signup' | 'custom-design' | 'about' | 'contact' | 'cart' | 'packages' | 'privacy' | 'terms'>('home');
   const [isLoaded, setIsLoaded] = useState(false);
   const { scrollY } = useScroll();
   const { addToCart } = useCart();
@@ -42,6 +43,8 @@ function AppContent() {
         setCurrentPage('contact');
       } else if (hash === 'cart') {
         setCurrentPage('cart');
+      } else if (hash === 'packages') {
+        setCurrentPage('packages');
       } else if (hash === 'privacy') {
         setCurrentPage('privacy');
       } else if (hash === 'terms') {
@@ -64,6 +67,7 @@ function AppContent() {
       {currentPage === 'about' && <AboutUs />}
       {currentPage === 'contact' && <ContactUs />}
       {currentPage === 'cart' && <Cart />}
+      {currentPage === 'packages' && <Packages />}
       {currentPage === 'privacy' && <PrivacyPolicy />}
       {currentPage === 'terms' && <TermsAndConditions />}
       {currentPage === 'home' && (

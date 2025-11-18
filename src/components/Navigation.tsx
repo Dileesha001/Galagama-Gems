@@ -14,6 +14,7 @@ export function Navigation({ isLoaded }: NavigationProps) {
   const navLinks = [
     { label: 'Home', href: '#' },
     { label: 'Custom Design', href: '#custom-design' },
+    { label: 'Packages', href: '#packages' },
     { label: 'Marketplace', href: '#marketplace' },
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' }
